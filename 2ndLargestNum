@@ -1,0 +1,51 @@
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int findSecondLargest(int matrix[][100], int rows, int cols) {
+    if (rows <= 0 || cols <= 0) return INT_MIN;
+    if (rows == 1 && cols == 1) return INT_MIN; 
+    
+    int first = INT_MIN, second = INT_MIN;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] > first) {
+                first = matrix[i][j];
+            }
+        }
+    }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] > second && matrix[i][j] < first) {
+                second = matrix[i][j];
+            }
+        }
+    }
+    
+    return (second == INT_MIN) ? first : second;
+}
+
+int main() {
+    int rows, cols;
+    int matrix[100][100];
+    
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+    
+    cout << "Enter matrix elements:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    
+    int result = findSecondLargest(matrix, rows, cols);
+    
+    if (result == INT_MIN) {
+        cout << "No second largest element exists (all elements are same)" << endl;
+    } else {
+        cout << "Second largest element: " << result << endl;
+    }
+    
+    return 0;
+}

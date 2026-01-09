@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int countFrequency(int matrix[][100], int rows, int cols, int target) {
+    int count = 0;
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] == target) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+int main() {
+    int rows, cols, target;
+    int matrix[100][100];
+    
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
+    
+    cout << "Enter matrix elements:\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    
+    cout << "Enter element to find frequency: ";
+    cin >> target;
+    
+    int frequency = countFrequency(matrix, rows, cols, target);
+    cout << "Element " << target << " occurs " << frequency << " times" << endl;
+    
+    return 0;
+}
